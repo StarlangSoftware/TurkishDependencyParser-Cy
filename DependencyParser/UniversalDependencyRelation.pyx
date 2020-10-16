@@ -1,10 +1,7 @@
-from DependencyParser.DependencyRelation cimport DependencyRelation
 from DependencyParser.UniversalDependencyType import UniversalDependencyType
 
 
 cdef class UniversalDependencyRelation(DependencyRelation):
-
-    cdef object __universalDependencyType
 
     universalDependencyTypes = ["ACL", "ADVCL", "ADVMOD", "AMOD", "APPOS", "AUX", "AUXPASS", "CASE", "CC", "CCOMP",
                                 "CLF", "COMPOUND", "CONJ", "COP", "CSUBJ", "CSUBJPASS", "DEP", "DET", "DISCOURSE",

@@ -5,7 +5,7 @@ setup(
     ext_modules=cythonize(["DependencyParser/*.pyx"],
                           compiler_directives={'language_level': "3"}),
     name='NlpToolkit-DependencyParser-Cy',
-    version='1.0.0',
+    version='1.0.1',
     packages=['DependencyParser'],
     package_data={'DependencyParser': ['*.pxd', '*.pyx', '*.c', '*.py']},
     url='https://github.com/olcaytaner/TurkishDependencyParser-Cy',
