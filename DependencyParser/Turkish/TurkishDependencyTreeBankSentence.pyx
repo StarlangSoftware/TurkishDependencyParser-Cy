@@ -1,6 +1,6 @@
 from xml.etree.ElementTree import Element
 
-from DependencyParser.TurkishDependencyTreeBankWord cimport TurkishDependencyTreeBankWord
+from DependencyParser.Turkish.TurkishDependencyTreeBankWord cimport TurkishDependencyTreeBankWord
 
 
 cdef class TurkishDependencyTreeBankSentence(Sentence):

@@ -2,12 +2,16 @@ from distutils.core import setup
 from Cython.Build import cythonize
 
 setup(
-    ext_modules=cythonize(["DependencyParser/*.pyx"],
+    ext_modules=cythonize(["DependencyParser/*.pyx", "DependencyParser/Stanford/*.pyx",
+                           "DependencyParser/Turkish/*.pyx", "DependencyParser/Universal/*.pyx"],
                           compiler_directives={'language_level': "3"}),
     name='NlpToolkit-DependencyParser-Cy',
-    version='1.0.1',
-    packages=['DependencyParser'],
-    package_data={'DependencyParser': ['*.pxd', '*.pyx', '*.c', '*.py']},
+    version='1.0.2',
+    packages=['DependencyParser', 'DependencyParser.Turkish', 'DependencyParser.Universal', 'DependencyParser.Stanford'],
+    package_data={'DependencyParser': ['*.pxd', '*.pyx', '*.c', '*.py'],
+                  'DependencyParser.Turkish': ['*.pxd', '*.pyx', '*.c', '*.py'],
+                  'DependencyParser.Universal': ['*.pxd', '*.pyx', '*.c', '*.py'],
+                  'DependencyParser.Stanford': ['*.pxd', '*.pyx', '*.c', '*.py']},
     url='https://github.com/olcaytaner/TurkishDependencyParser-Cy',
     license='',
     author='olcaytaner',

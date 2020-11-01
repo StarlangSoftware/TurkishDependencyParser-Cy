@@ -2,7 +2,7 @@ import xml
 
 from Corpus.Corpus cimport Corpus
 
-from DependencyParser.TurkishDependencyTreeBankSentence cimport TurkishDependencyTreeBankSentence
+from DependencyParser.Turkish.TurkishDependencyTreeBankSentence cimport TurkishDependencyTreeBankSentence
 
 
 cdef class TurkishDependencyTreeBankCorpus(Corpus):

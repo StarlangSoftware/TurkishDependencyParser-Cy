@@ -1,6 +1,6 @@
 from Dictionary.Word cimport Word
 from MorphologicalAnalysis.MorphologicalParse cimport MorphologicalParse
-from DependencyParser.TurkishDependencyRelation cimport TurkishDependencyRelation
+from DependencyParser.Turkish.TurkishDependencyRelation cimport TurkishDependencyRelation
 
 
 cdef class TurkishDependencyTreeBankWord(Word):

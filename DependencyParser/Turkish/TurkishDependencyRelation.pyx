@@ -1,4 +1,4 @@
-from DependencyParser.TurkishDependencyType import TurkishDependencyType
+from DependencyParser.Turkish.TurkishDependencyType import TurkishDependencyType
 
 
 cdef class TurkishDependencyRelation(DependencyRelation):
