@@ -15,7 +15,7 @@ setup(
     url='https://github.com/olcaytaner/TurkishDependencyParser-Cy',
     license='',
     author='olcaytaner',
-    author_email='olcaytaner@isikun.edu.tr',
+    author_email='olcay.yildiz@ozyegin.edu.tr',
     description='Turkish Dependency Parser',
     install_requires=['NlpToolkit-MorphologicalAnalysis-Cy']
 )
