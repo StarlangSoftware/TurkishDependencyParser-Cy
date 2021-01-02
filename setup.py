@@ -12,7 +12,7 @@ setup(
                   'DependencyParser.Turkish': ['*.pxd', '*.pyx', '*.c', '*.py'],
                   'DependencyParser.Universal': ['*.pxd', '*.pyx', '*.c', '*.py'],
                   'DependencyParser.Stanford': ['*.pxd', '*.pyx', '*.c', '*.py']},
-    url='https://github.com/olcaytaner/TurkishDependencyParser-Cy',
+    url='https://github.com/StarlangSoftware/TurkishDependencyParser-Cy',
     license='',
     author='olcaytaner',
     author_email='olcay.yildiz@ozyegin.edu.tr',
