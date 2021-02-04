@@ -28,7 +28,7 @@ Use Git for cloning the code to your local or below line for Ubuntu:
 
 A directory called DataStructure will be created. Or you can use below link for exploring the code:
 
-	git clone https://github.com/starlangsoftware/TurkishDependencyParser-Py.git
+	git clone https://github.com/starlangsoftware/TurkishDependencyParser-Cy.git
 
 ## Open project with Pycharm IDE
 
@@ -36,6 +36,6 @@ Steps for opening the cloned project:
 
 * Start IDE
 * Select **File | Open** from main menu
-* Choose `TurkishDependencyParser-CPP` file
+* Choose `TurkishDependencyParser-Cy` file
 * Select open as project option
 * Couple of seconds, dependencies with Maven will be downloaded. 
