@@ -1,4 +1,3 @@
-from DependencyParser.DependencyRelation cimport DependencyRelation
 from DependencyParser.Stanford.StanfordDependencyType import StanfordDependencyType
 
 
@@ -52,8 +51,8 @@ cdef class StanfordDependencyRelation(DependencyRelation):
         """
         cdef int j
         for j in range(len(StanfordDependencyRelation.stanfordDependencyTags)):
-            if tag == StanfordDependencyRelation.stanfordDependencyTypes[j]:
-                return StanfordDependencyRelation.stanfordDependencyTypes[j]
+            if tag.upper() == StanfordDependencyRelation.stanfordDependencyTypes[j]:
+                return StanfordDependencyRelation.stanfordDependencyTags[j]
         return None
 
     def __init__(self, toWord: int, dependencyType: str = None):

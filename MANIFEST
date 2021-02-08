@@ -5,6 +5,7 @@ DependencyParser/DependencyRelation.pxd
 DependencyParser/DependencyRelation.pyx
 DependencyParser/__init__.py
 DependencyParser/Stanford/StanfordDependencyRelation.c
+DependencyParser/Stanford/StanfordDependencyRelation.pxd
 DependencyParser/Stanford/StanfordDependencyRelation.pyx
 DependencyParser/Stanford/StanfordDependencyType.py
 DependencyParser/Stanford/__init__.py

@@ -42,7 +42,7 @@ cdef class TurkishDependencyRelation(DependencyRelation):
         """
         cdef int j
         for j in range(len(TurkishDependencyRelation.turkishDependencyTypes)):
-            if tag == TurkishDependencyRelation.turkishDependencyTypes[j]:
+            if tag.upper() == TurkishDependencyRelation.turkishDependencyTypes[j]:
                 return TurkishDependencyRelation.turkishDependencyTags[j]
         return None
 

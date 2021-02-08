@@ -84,7 +84,7 @@ cdef class UniversalDependencyRelation(DependencyRelation):
         """
         cdef int j
         for j in range(len(UniversalDependencyRelation.universalDependencyTags)):
-            if tag == UniversalDependencyRelation.universalDependencyTypes[j]:
+            if tag.upper() == UniversalDependencyRelation.universalDependencyTypes[j]:
                 return UniversalDependencyRelation.universalDependencyTags[j]
         return None
 
@@ -92,7 +92,7 @@ cdef class UniversalDependencyRelation(DependencyRelation):
     def getDependencyPosType(tag: str) -> UniversalDependencyPosType:
         cdef int j
         for j in range(len(UniversalDependencyRelation.universalDependencyPosTypes)):
-            if tag == UniversalDependencyRelation.universalDependencyPosTypes[j]:
+            if tag.upper() == UniversalDependencyRelation.universalDependencyPosTypes[j]:
                 return UniversalDependencyRelation.universalDependencyPosTags[j]
         return None
 
