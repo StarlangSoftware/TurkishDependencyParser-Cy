@@ -3,7 +3,7 @@ import unittest
 from DependencyParser.Universal.UniversalDependencyTreeBankCorpus import UniversalDependencyTreeBankCorpus
 
 
-class TurkishDependencyTreeBankCorpusTest(unittest.TestCase):
+class UniversalDependencyTreeBankCorpusTest(unittest.TestCase):
 
     def wordCount(self, corpus: UniversalDependencyTreeBankCorpus)-> int:
         wordCount = 0
