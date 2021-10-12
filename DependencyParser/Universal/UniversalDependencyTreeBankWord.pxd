@@ -20,6 +20,7 @@ cdef class UniversalDependencyTreeBankWord(Word):
     cpdef str getXPos(self)
     cpdef UniversalDependencyTreeBankFeatures getFeatures(self)
     cpdef str getFeatureValue(self, str featureName)
+    cpdef bint featureExists(self, str featureName)
     cpdef UniversalDependencyRelation getRelation(self)
     cpdef str getDeps(self)
     cpdef str getMisc(self)

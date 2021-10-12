@@ -34,6 +34,9 @@ cdef class UniversalDependencyTreeBankWord(Word):
     cpdef str getFeatureValue(self, str featureName):
         return self.features.getFeatureValue(featureName)
 
+    cpdef bint featureExists(self, str featureName):
+        return self.features.featureExists(featureName)
+
     cpdef UniversalDependencyRelation getRelation(self):
         return self.relation
 

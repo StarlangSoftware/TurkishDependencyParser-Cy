@@ -17,6 +17,9 @@ cdef class UniversalDependencyTreeBankFeatures:
     cpdef str getFeatureValue(self, str feature):
         return self.featureList[feature]
 
+    cpdef bint featureExists(self, str feature):
+        return feature in self.featureList
+
     def __str__(self) -> str:
         cdef str result, feature
         if len(self.featureList) == 0:
