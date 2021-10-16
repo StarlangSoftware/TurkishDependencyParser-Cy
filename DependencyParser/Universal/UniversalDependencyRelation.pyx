@@ -130,5 +130,17 @@ cdef class UniversalDependencyRelation(DependencyRelation):
         if dependencyType is not None:
             self.__universalDependencyType = UniversalDependencyRelation.getDependencyTag(dependencyType)
 
+    cpdef ParserEvaluationScore compareRelations(self, UniversalDependencyRelation relation):
+        LS = 0.0
+        LAS = 0.0
+        UAS = 0.0
+        if self.__str__() == relation.__str__():
+            LS = 1.0
+            if self.toWord == relation.to():
+                LAS = 1.0
+        if self.toWord == relation.to():
+            UAS = 1.0
+        return ParserEvaluationScore(LAS, UAS, LS, 1)
+
     def __str__(self) -> str:
         return self.__universalDependencyType.name

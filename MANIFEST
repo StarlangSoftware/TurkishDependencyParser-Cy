@@ -3,6 +3,9 @@ setup.py
 DependencyParser/DependencyRelation.c
 DependencyParser/DependencyRelation.pxd
 DependencyParser/DependencyRelation.pyx
+DependencyParser/ParserEvaluationScore.c
+DependencyParser/ParserEvaluationScore.pxd
+DependencyParser/ParserEvaluationScore.pyx
 DependencyParser/__init__.py
 DependencyParser/Stanford/StanfordDependencyRelation.c
 DependencyParser/Stanford/StanfordDependencyRelation.pxd

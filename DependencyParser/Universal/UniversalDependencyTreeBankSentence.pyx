@@ -1,3 +1,4 @@
+from DependencyParser.Universal.UniversalDependencyRelation cimport UniversalDependencyRelation
 from Dictionary.Word cimport Word
 
 
@@ -19,3 +20,14 @@ cdef class UniversalDependencyTreeBankSentence(Sentence):
         for word in self.words:
             result += word.__str__() + "\n"
         return result
+
+    cpdef ParserEvaluationScore compareParses(self, UniversalDependencyTreeBankSentence sentence):
+        cdef int i
+        cdef UniversalDependencyRelation relation1, relation2
+        score = ParserEvaluationScore()
+        for i in range(len(self.words)):
+            relation1 = self.words[i].getRelation()
+            relation2 = sentence.getWord(i).getRelation()
+            if relation1 is not None and relation2 is not None:
+                score.add(relation1.compareRelations(relation2))
+        return score

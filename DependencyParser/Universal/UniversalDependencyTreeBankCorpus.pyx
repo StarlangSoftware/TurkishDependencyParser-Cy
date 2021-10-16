@@ -7,6 +7,7 @@ import re
 
 from DependencyParser.Universal.UniversalDependencyTreeBankWord cimport UniversalDependencyTreeBankWord
 
+from DependencyParser.ParserEvaluationScore cimport ParserEvaluationScore
 
 cdef class UniversalDependencyTreeBankCorpus(Corpus):
 
@@ -59,3 +60,9 @@ cdef class UniversalDependencyTreeBankCorpus(Corpus):
                         word = UniversalDependencyTreeBankWord(int(id), surfaceForm, lemma, upos, xpos, features,
                                                                relation, deps, misc)
                         sentence.addWord(word)
+
+    cpdef ParserEvaluationScore compareParses(self, UniversalDependencyTreeBankCorpus corpus):
+        score = ParserEvaluationScore()
+        for i in range(len(self.sentences)):
+            score.add(self.sentences[i].compareParses(corpus.getSentence(i)))
+        return score
