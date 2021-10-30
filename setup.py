@@ -1,4 +1,8 @@
-from distutils.core import setup
+from setuptools import setup
+
+from pathlib import Path
+this_directory = Path(__file__).parent
+long_description = (this_directory / "README.md").read_text()
 from Cython.Build import cythonize
 
 setup(
@@ -6,7 +10,7 @@ setup(
                            "DependencyParser/Turkish/*.pyx", "DependencyParser/Universal/*.pyx"],
                           compiler_directives={'language_level': "3"}),
     name='NlpToolkit-DependencyParser-Cy',
-    version='1.0.8',
+    version='1.0.9',
     packages=['DependencyParser', 'DependencyParser.Turkish', 'DependencyParser.Universal', 'DependencyParser.Stanford'],
     package_data={'DependencyParser': ['*.pxd', '*.pyx', '*.c', '*.py'],
                   'DependencyParser.Turkish': ['*.pxd', '*.pyx', '*.c', '*.py'],
@@ -17,5 +21,7 @@ setup(
     author='olcaytaner',
     author_email='olcay.yildiz@ozyegin.edu.tr',
     description='Turkish Dependency Parser',
-    install_requires=['NlpToolkit-MorphologicalAnalysis-Cy']
+    install_requires=['NlpToolkit-MorphologicalAnalysis-Cy'],
+    long_description=long_description,
+    long_description_content_type='text/markdown'
 )
