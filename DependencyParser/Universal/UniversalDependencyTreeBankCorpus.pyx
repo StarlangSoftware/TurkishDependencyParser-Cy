@@ -1,65 +1,28 @@
 from Corpus.Corpus cimport Corpus
 from DataStructure.CounterHashMap cimport CounterHashMap
-from DependencyParser.Universal.UniversalDependencyRelation cimport UniversalDependencyRelation
-from DependencyParser.Universal.UniversalDependencyTreeBankFeatures cimport UniversalDependencyTreeBankFeatures
-from DependencyParser.Universal.UniversalDependencyTreeBankSentence cimport UniversalDependencyTreeBankSentence
-import re
-
-from DependencyParser.Universal.UniversalDependencyTreeBankWord cimport UniversalDependencyTreeBankWord
 
 from DependencyParser.ParserEvaluationScore cimport ParserEvaluationScore
+from DependencyParser.Universal.UniversalDependencyTreeBankSentence cimport UniversalDependencyTreeBankSentence
 
 cdef class UniversalDependencyTreeBankCorpus(Corpus):
 
     def __init__(self, fileName: str):
-        cdef UniversalDependencyTreeBankSentence sentence
-        cdef UniversalDependencyRelation relation
-        cdef UniversalDependencyTreeBankWord word
-        cdef list lines, items
-        cdef str line, id, surfaceForm, lemma, xpos, dependencyType, deps, misc
-        cdef UniversalDependencyTreeBankFeatures features
-        cdef int to
+        cdef list lines
+        cdef str line, sentence
         self.sentences = []
         self.paragraphs = []
         self.wordList = CounterHashMap()
-        sentence = None
-        relation = None
+        sentence = ""
         file = open(fileName, "r")
         lines = file.readlines()
+        file.close()
         for line in lines:
             line = line.strip()
             if len(line) == 0:
-                self.addSentence(sentence)
-                sentence = None
-            elif line.startswith("#"):
-                if sentence is None:
-                    sentence = UniversalDependencyTreeBankSentence()
-                sentence.addComment(line.strip())
+                self.addSentence(UniversalDependencyTreeBankSentence(sentence))
+                sentence = ""
             else:
-                items = line.split("\t")
-                if len(items) != 10:
-                    print("Line does not contain 10 items ->" + line)
-                else:
-                    id = items[0]
-                    if re.fullmatch("\\d+", id):
-                        surfaceForm = items[1]
-                        lemma = items[2]
-                        upos = UniversalDependencyRelation.getDependencyPosType(items[3])
-                        if upos is None:
-                            print("Line does not contain universal pos ->" + line)
-                        xpos = items[4]
-                        features = UniversalDependencyTreeBankFeatures(items[5])
-                        if items[6] != "_":
-                            to = int(items[6])
-                            dependencyType = items[7].upper()
-                            relation = UniversalDependencyRelation(to, dependencyType)
-                        else:
-                            relation = None
-                        deps = items[8]
-                        misc = items[9]
-                        word = UniversalDependencyTreeBankWord(int(id), surfaceForm, lemma, upos, xpos, features,
-                                                               relation, deps, misc)
-                        sentence.addWord(word)
+                sentence = sentence + line + "\n"
 
     cpdef ParserEvaluationScore compareParses(self, UniversalDependencyTreeBankCorpus corpus):
         score = ParserEvaluationScore()

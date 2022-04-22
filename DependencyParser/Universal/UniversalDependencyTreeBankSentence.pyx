@@ -1,12 +1,53 @@
-from DependencyParser.Universal.UniversalDependencyRelation cimport UniversalDependencyRelation
 from Dictionary.Word cimport Word
+from DependencyParser.Universal.UniversalDependencyRelation cimport UniversalDependencyRelation
+from DependencyParser.Universal.UniversalDependencyTreeBankFeatures cimport UniversalDependencyTreeBankFeatures
+from DependencyParser.Universal.UniversalDependencyTreeBankWord cimport UniversalDependencyTreeBankWord
+import re
 
 
 cdef class UniversalDependencyTreeBankSentence(Sentence):
 
-    def __init__(self):
+    def __init__(self, sentence: str = None):
+        cdef UniversalDependencyRelation relation
+        cdef UniversalDependencyTreeBankWord word
+        cdef list lines, items
+        cdef str line, id, surfaceForm, lemma, xpos, dependencyType, deps, misc
+        cdef UniversalDependencyTreeBankFeatures features
+        cdef int to
         super().__init__()
         self.comments = []
+        if sentence is not None:
+            lines = sentence.split("\n")
+            for line in lines:
+                if len(line) == 0:
+                    continue
+                if line.startswith("#"):
+                    self.addComment(line.strip())
+                else:
+                    items = line.split("\t")
+                    if len(items) != 10:
+                        print("Line does not contain 10 items ->" + line)
+                    else:
+                        id = items[0]
+                        if re.fullmatch("\\d+", id):
+                            surfaceForm = items[1]
+                            lemma = items[2]
+                            upos = UniversalDependencyRelation.getDependencyPosType(items[3])
+                            if upos is None:
+                                print("Line does not contain universal pos ->" + line)
+                            xpos = items[4]
+                            features = UniversalDependencyTreeBankFeatures(items[5])
+                            if items[6] != "_":
+                                to = int(items[6])
+                                dependencyType = items[7].upper()
+                                relation = UniversalDependencyRelation(to, dependencyType)
+                            else:
+                                relation = None
+                            deps = items[8]
+                            misc = items[9]
+                            word = UniversalDependencyTreeBankWord(int(id), surfaceForm, lemma, upos, xpos, features,
+                                                               relation, deps, misc)
+                            self.addWord(word)
 
     cpdef addComment(self, str comment):
         self.comments.append(comment)
