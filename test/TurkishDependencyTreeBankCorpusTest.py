@@ -2,7 +2,7 @@ import unittest
 
 from DataStructure.CounterHashMap import CounterHashMap
 
-from DependencyParser.TurkishDependencyTreeBankCorpus import TurkishDependencyTreeBankCorpus
+from DependencyParser.Turkish.TurkishDependencyTreeBankCorpus import TurkishDependencyTreeBankCorpus
 from DependencyParser.Turkish.TurkishDependencyType import TurkishDependencyType
 
 

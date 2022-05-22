@@ -2,7 +2,7 @@ from setuptools import setup
 
 from pathlib import Path
 this_directory = Path(__file__).parent
-long_description = (this_directory / "README.md").read_text()
+long_description = (this_directory / "README.md").read_text(encoding="utf-8")
 from Cython.Build import cythonize
 
 setup(
@@ -10,7 +10,7 @@ setup(
                            "DependencyParser/Turkish/*.pyx", "DependencyParser/Universal/*.pyx"],
                           compiler_directives={'language_level': "3"}),
     name='NlpToolkit-DependencyParser-Cy',
-    version='1.0.10',
+    version='1.0.11',
     packages=['DependencyParser', 'DependencyParser.Turkish', 'DependencyParser.Universal', 'DependencyParser.Stanford'],
     package_data={'DependencyParser': ['*.pxd', '*.pyx', '*.c', '*.py'],
                   'DependencyParser.Turkish': ['*.pxd', '*.pyx', '*.c', '*.py'],
