@@ -7,8 +7,8 @@ cdef class UniversalDependencyTreeBankWord(Word):
 
     cdef int id
     cdef str lemma
-    cdef object upos
-    cdef str xpos
+    cdef object u_pos
+    cdef str x_pos
     cdef UniversalDependencyTreeBankFeatures features
     cdef UniversalDependencyRelation relation
     cdef str deps

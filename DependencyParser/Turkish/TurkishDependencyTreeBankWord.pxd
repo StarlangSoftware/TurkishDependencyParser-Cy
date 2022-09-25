@@ -6,7 +6,7 @@ from DependencyParser.Turkish.TurkishDependencyRelation cimport TurkishDependenc
 cdef class TurkishDependencyTreeBankWord(Word):
 
     cdef MorphologicalParse __parse
-    cdef list __originalParses
+    cdef list __original_parses
     cdef TurkishDependencyRelation __relation
 
     cpdef list splitIntoInflectionalGroups(self, str IG)

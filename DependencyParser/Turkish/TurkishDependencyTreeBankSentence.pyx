@@ -16,8 +16,8 @@ cdef class TurkishDependencyTreeBankSentence(Sentence):
             Xml parsed node containing information about a sentence.
         """
         super().__init__()
-        for wordNode in sentenceNode:
-            word = TurkishDependencyTreeBankWord(wordNode)
+        for word_node in sentenceNode:
+            word = TurkishDependencyTreeBankWord(word_node)
             self.words.append(word)
 
     cpdef int maxDependencyLength(self):
@@ -30,11 +30,11 @@ cdef class TurkishDependencyTreeBankSentence(Sentence):
         int
             Maximum of all word to related word distances.
         """
-        cdef int maxLength, i
+        cdef int max_length, i
         cdef TurkishDependencyTreeBankWord word
-        maxLength = 0
+        max_length = 0
         for i in range(len(self.words)):
             word = self.words[i]
-            if word.getRelation() is not None and word.getRelation().to() - i > maxLength:
-                maxLength = word.getRelation().to() - i
-        return maxLength
+            if word.getRelation() is not None and word.getRelation().to() - i > max_length:
+                max_length = word.getRelation().to() - i
+        return max_length

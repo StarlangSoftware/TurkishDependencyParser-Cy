@@ -9,7 +9,7 @@ cdef class DependencyRelation:
         toWord : int
             Index of the word in the sentence that dependency relation is related
         """
-        self.toWord = toWord
+        self.to_word = toWord
 
     cpdef int to(self):
         """
@@ -20,4 +20,4 @@ cdef class DependencyRelation:
         int
             toWord attribute value
         """
-        return self.toWord
+        return self.to_word

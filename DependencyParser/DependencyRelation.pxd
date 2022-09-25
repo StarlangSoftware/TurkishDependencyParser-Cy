@@ -1,5 +1,5 @@
 cdef class DependencyRelation:
 
-    cdef int toWord
+    cdef int to_word
 
     cpdef int to(self)

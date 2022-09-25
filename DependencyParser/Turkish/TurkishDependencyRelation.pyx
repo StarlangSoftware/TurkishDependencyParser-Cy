@@ -3,26 +3,26 @@ from DependencyParser.Turkish.TurkishDependencyType import TurkishDependencyType
 
 cdef class TurkishDependencyRelation(DependencyRelation):
 
-    turkishDependencyTypes = ["VOCATIVE", "SUBJECT", "DATIVE.ADJUNCT", "OBJECT", "POSSESSOR",
+    turkish_dependency_types = ["VOCATIVE", "SUBJECT", "DATIVE.ADJUNCT", "OBJECT", "POSSESSOR",
                               "MODIFIER", "S.MODIFIER", "ABLATIVE.ADJUNCT", "DETERMINER", "SENTENCE",
                               "CLASSIFIER", "LOCATIVE.ADJUNCT", "COORDINATION", "QUESTION.PARTICLE", "INTENSIFIER",
                               "INSTRUMENTAL.ADJUNCT", "RELATIVIZER", "NEGATIVE.PARTICLE", "ETOL", "COLLOCATION",
                               "FOCUS.PARTICLE", "EQU.ADJUNCT", "APPOSITION"]
 
-    turkishDependencyTags = [TurkishDependencyType.VOCATIVE, TurkishDependencyType.SUBJECT,
-                             TurkishDependencyType.DATIVE_ADJUNCT, TurkishDependencyType.OBJECT,
-                             TurkishDependencyType.POSSESSOR,
-                             TurkishDependencyType.MODIFIER, TurkishDependencyType.S_MODIFIER,
-                             TurkishDependencyType.ABLATIVE_ADJUNCT, TurkishDependencyType.DETERMINER,
-                             TurkishDependencyType.SENTENCE,
-                             TurkishDependencyType.CLASSIFIER, TurkishDependencyType.LOCATIVE_ADJUNCT,
-                             TurkishDependencyType.COORDINATION, TurkishDependencyType.QUESTION_PARTICLE,
-                             TurkishDependencyType.INTENSIFIER,
-                             TurkishDependencyType.INSTRUMENTAL_ADJUNCT, TurkishDependencyType.RELATIVIZER,
-                             TurkishDependencyType.NEGATIVE_PARTICLE, TurkishDependencyType.ETOL,
-                             TurkishDependencyType.COLLOCATION,
-                             TurkishDependencyType.FOCUS_PARTICLE, TurkishDependencyType.EQU_ADJUNCT,
-                             TurkishDependencyType.APPOSITION]
+    turkish_dependency_tags = [TurkishDependencyType.VOCATIVE, TurkishDependencyType.SUBJECT,
+                               TurkishDependencyType.DATIVE_ADJUNCT, TurkishDependencyType.OBJECT,
+                               TurkishDependencyType.POSSESSOR,
+                               TurkishDependencyType.MODIFIER, TurkishDependencyType.S_MODIFIER,
+                               TurkishDependencyType.ABLATIVE_ADJUNCT, TurkishDependencyType.DETERMINER,
+                               TurkishDependencyType.SENTENCE,
+                               TurkishDependencyType.CLASSIFIER, TurkishDependencyType.LOCATIVE_ADJUNCT,
+                               TurkishDependencyType.COORDINATION, TurkishDependencyType.QUESTION_PARTICLE,
+                               TurkishDependencyType.INTENSIFIER,
+                               TurkishDependencyType.INSTRUMENTAL_ADJUNCT, TurkishDependencyType.RELATIVIZER,
+                               TurkishDependencyType.NEGATIVE_PARTICLE, TurkishDependencyType.ETOL,
+                               TurkishDependencyType.COLLOCATION,
+                               TurkishDependencyType.FOCUS_PARTICLE, TurkishDependencyType.EQU_ADJUNCT,
+                               TurkishDependencyType.APPOSITION]
 
     @staticmethod
     def getDependencyTag(tag: str) -> TurkishDependencyType:
@@ -41,12 +41,15 @@ cdef class TurkishDependencyRelation(DependencyRelation):
             Type of the dependency in TurkishDependencyType form
         """
         cdef int j
-        for j in range(len(TurkishDependencyRelation.turkishDependencyTypes)):
-            if tag.upper() == TurkishDependencyRelation.turkishDependencyTypes[j]:
-                return TurkishDependencyRelation.turkishDependencyTags[j]
+        for j in range(len(TurkishDependencyRelation.turkish_dependency_types)):
+            if tag.upper() == TurkishDependencyRelation.turkish_dependency_types[j]:
+                return TurkishDependencyRelation.turkish_dependency_tags[j]
         return None
 
-    def __init__(self, toWord: int, toIG: int, dependencyType: str):
+    def __init__(self,
+                 toWord: int,
+                 toIG: int,
+                 dependencyType: str):
         """
         Another constructor for TurkishDependencyRelation. Gets input toWord, toIG, and dependencyType as arguments and
         calls the super class's constructor and sets the IG and dependency type.
@@ -61,8 +64,8 @@ cdef class TurkishDependencyRelation(DependencyRelation):
             Type of the dependency relation in string form
         """
         super().__init__(toWord)
-        self.__toIG = toIG
-        self.__turkishDependencyType = TurkishDependencyRelation.getDependencyTag(dependencyType)
+        self.__to_ig = toIG
+        self.__turkish_dependency_type = TurkishDependencyRelation.getDependencyTag(dependencyType)
 
     cpdef int toIG(self):
         """
@@ -73,7 +76,7 @@ cdef class TurkishDependencyRelation(DependencyRelation):
         int
             toIG attribute
         """
-        return self.__toIG
+        return self.__to_ig
 
     cpdef object getTurkishDependencyType(self):
         """
@@ -84,7 +87,7 @@ cdef class TurkishDependencyRelation(DependencyRelation):
         TurkishDependencyType
             turkishDependencyType attribute
         """
-        return self.__turkishDependencyType
+        return self.__turkish_dependency_type
 
     def __str__(self) -> str:
-        return self.__turkishDependencyType.name
+        return self.__turkish_dependency_type.name

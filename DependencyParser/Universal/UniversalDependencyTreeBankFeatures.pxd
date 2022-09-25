@@ -1,6 +1,6 @@
 cdef class UniversalDependencyTreeBankFeatures:
 
-    cdef dict featureList
+    cdef dict feature_list
 
     cpdef str getFeatureValue(self, str feature)
 

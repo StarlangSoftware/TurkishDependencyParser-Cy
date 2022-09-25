@@ -4,7 +4,7 @@ cdef class ParserEvaluationScore:
         self.LAS = LAS
         self.UAS = UAS
         self.LS = LS
-        self.wordCount = wordCount
+        self.word_count = wordCount
 
     cpdef float getLS(self):
         return self.LS
@@ -16,13 +16,13 @@ cdef class ParserEvaluationScore:
         return self.UAS
 
     cpdef int getWordCount(self):
-        return self.wordCount
+        return self.word_count
 
     cpdef add(self, ParserEvaluationScore parserEvaluationScore):
-        self.LAS = (self.LAS * self.wordCount + parserEvaluationScore.LAS * parserEvaluationScore.wordCount) / \
-                   (self.wordCount + parserEvaluationScore.wordCount)
-        self.UAS = (self.UAS * self.wordCount + parserEvaluationScore.UAS * parserEvaluationScore.wordCount) / \
-                   (self.wordCount + parserEvaluationScore.wordCount)
-        self.LS = (self.LS * self.wordCount + parserEvaluationScore.LS * parserEvaluationScore.wordCount) / \
-                  (self.wordCount + parserEvaluationScore.wordCount)
-        self.wordCount += parserEvaluationScore.wordCount
+        self.LAS = (self.LAS * self.word_count + parserEvaluationScore.LAS * parserEvaluationScore.word_count) / \
+                   (self.word_count + parserEvaluationScore.word_count)
+        self.UAS = (self.UAS * self.word_count + parserEvaluationScore.UAS * parserEvaluationScore.word_count) / \
+                   (self.word_count + parserEvaluationScore.word_count)
+        self.LS = (self.LS * self.word_count + parserEvaluationScore.LS * parserEvaluationScore.word_count) / \
+                  (self.word_count + parserEvaluationScore.word_count)
+        self.word_count += parserEvaluationScore.word_count
