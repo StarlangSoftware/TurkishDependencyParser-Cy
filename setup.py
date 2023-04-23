@@ -10,7 +10,7 @@ setup(
                            "DependencyParser/Turkish/*.pyx", "DependencyParser/Universal/*.pyx"],
                           compiler_directives={'language_level': "3"}),
     name='NlpToolkit-DependencyParser-Cy',
-    version='1.0.13',
+    version='1.0.14',
     packages=['DependencyParser', 'DependencyParser.Turkish', 'DependencyParser.Universal', 'DependencyParser.Stanford'],
     package_data={'DependencyParser': ['*.pxd', '*.pyx', '*.c', '*.py'],
                   'DependencyParser.Turkish': ['*.pxd', '*.pyx', '*.c', '*.py'],

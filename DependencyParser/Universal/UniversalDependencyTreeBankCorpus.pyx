@@ -11,7 +11,11 @@ cdef class UniversalDependencyTreeBankCorpus(Corpus):
         cdef str line, sentence
         self.sentences = []
         self.paragraphs = []
-        self.wordList = CounterHashMap()
+        self.word_list = CounterHashMap()
+        if '/' in fileName:
+            self.language = fileName[fileName.index('/') + 1:fileName.index('_')]
+        else:
+            self.language = fileName[0:fileName.index('_')]
         sentence = ""
         file = open(fileName, "r")
         lines = file.readlines()
@@ -19,7 +23,7 @@ cdef class UniversalDependencyTreeBankCorpus(Corpus):
         for line in lines:
             line = line.strip()
             if len(line) == 0:
-                self.addSentence(UniversalDependencyTreeBankSentence(sentence))
+                self.addSentence(UniversalDependencyTreeBankSentence(self.language, sentence))
                 sentence = ""
             else:
                 sentence = sentence + line + "\n"

@@ -7,7 +7,7 @@ import re
 
 cdef class UniversalDependencyTreeBankSentence(Sentence):
 
-    def __init__(self, sentence: str = None):
+    def __init__(self, language: str, sentence: str = None):
         cdef UniversalDependencyRelation relation
         cdef UniversalDependencyTreeBankWord word
         cdef list lines, items
@@ -36,7 +36,7 @@ cdef class UniversalDependencyTreeBankSentence(Sentence):
                             if u_pos is None:
                                 print("Line does not contain universal pos ->" + line)
                             x_pos = items[4]
-                            features = UniversalDependencyTreeBankFeatures(items[5])
+                            features = UniversalDependencyTreeBankFeatures(language, items[5])
                             if items[6] != "_":
                                 to = int(items[6])
                                 dependency_type = items[7].upper()
