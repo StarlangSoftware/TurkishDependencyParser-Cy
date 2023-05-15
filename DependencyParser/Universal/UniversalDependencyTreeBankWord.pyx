@@ -1,19 +1,16 @@
 from DependencyParser.Universal.UniversalDependencyPosType import UniversalDependencyPosType
 
-
 cdef class UniversalDependencyTreeBankWord(Word):
 
-    def __init__(self,
-                 id: int,
-                 name: str,
-                 lemma: str,
-                 upos: UniversalDependencyPosType,
-                 xpos: str,
-                 features: UniversalDependencyTreeBankFeatures,
-                 relation: UniversalDependencyRelation,
-                 deps: str,
-                 misc: str):
-        super().__init__(name)
+    cpdef constructor1(self,
+                     int id,
+                     str lemma,
+                     object upos,
+                     str xpos,
+                     UniversalDependencyTreeBankFeatures features,
+                     UniversalDependencyRelation relation,
+                     str deps,
+                     str misc):
         self.id = id
         self.lemma = lemma
         self.u_pos = upos
@@ -22,6 +19,40 @@ cdef class UniversalDependencyTreeBankWord(Word):
         self.features = features
         self.relation = relation
         self.misc = misc
+
+    cpdef constructor2(self):
+        self.id = 0
+        self.lemma = ""
+        self.u_pos = UniversalDependencyPosType.X
+        self.x_pos = ""
+        self.features = None
+        self.deps = ""
+        self.misc = ""
+        self.relation = UniversalDependencyRelation()
+
+    def __init__(self,
+                 id: int = None,
+                 name: str = None,
+                 lemma: str = None,
+                 upos: UniversalDependencyPosType = None,
+                 xpos: str = None,
+                 features: UniversalDependencyTreeBankFeatures = None,
+                 relation: UniversalDependencyRelation = None,
+                 deps: str = None,
+                 misc: str = None):
+        if id is not None:
+            super().__init__(name)
+            self.constructor1(id,
+                              lemma,
+                              upos,
+                              xpos,
+                              features,
+                              relation,
+                              deps,
+                              misc)
+        else:
+            super().__init__("root")
+            self.constructor2()
 
     cpdef int getId(self):
         return self.id
@@ -46,6 +77,9 @@ cdef class UniversalDependencyTreeBankWord(Word):
 
     cpdef UniversalDependencyRelation getRelation(self):
         return self.relation
+
+    cpdef setRelation(self, UniversalDependencyRelation relation):
+        self.relation = relation
 
     cpdef str getDeps(self):
         return self.deps

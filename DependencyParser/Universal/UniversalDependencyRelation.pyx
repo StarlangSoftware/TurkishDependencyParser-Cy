@@ -118,6 +118,13 @@ cdef class UniversalDependencyRelation(DependencyRelation):
                 return UniversalDependencyRelation.universal_dependency_pos_tags[j]
         return None
 
+    cpdef constructor1(self, str dependencyType):
+        self.__universal_dependency_type = UniversalDependencyRelation.getDependencyTag(dependencyType)
+
+    cpdef constructor2(self):
+        self.to_word = -1
+        self.__universal_dependency_type = UniversalDependencyType.DEP
+
     def __init__(self,
                  toWord: int,
                  dependencyType: str = None):
@@ -129,9 +136,12 @@ cdef class UniversalDependencyRelation(DependencyRelation):
         toWord : int
             Index of the word in the sentence that dependency relation is related
         """
-        super().__init__(toWord)
-        if dependencyType is not None:
-            self.__universal_dependency_type = UniversalDependencyRelation.getDependencyTag(dependencyType)
+        if toWord is None:
+            self.constructor2()
+        else:
+            super().__init__(toWord)
+            if dependencyType is not None:
+                self.constructor1(dependencyType)
 
     cpdef ParserEvaluationScore compareRelations(self, UniversalDependencyRelation relation):
         LS = 0.0

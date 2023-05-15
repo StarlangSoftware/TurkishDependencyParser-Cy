@@ -21,6 +21,17 @@ cdef class UniversalDependencyTreeBankWord(Word):
     cpdef UniversalDependencyTreeBankFeatures getFeatures(self)
     cpdef str getFeatureValue(self, str featureName)
     cpdef bint featureExists(self, str featureName)
+    cpdef setRelation(self, UniversalDependencyRelation relation)
     cpdef UniversalDependencyRelation getRelation(self)
     cpdef str getDeps(self)
     cpdef str getMisc(self)
+    cpdef constructor1(self,
+                       int id,
+                       str lemma,
+                       object upos,
+                       str xpos,
+                       UniversalDependencyTreeBankFeatures features,
+                       UniversalDependencyRelation relation,
+                       str deps,
+                       str misc)
+    cpdef constructor2(self)

@@ -6,7 +6,7 @@ from DependencyParser.Universal.UniversalDependencyTreeBankSentence cimport Univ
 
 cdef class UniversalDependencyTreeBankCorpus(Corpus):
 
-    def __init__(self, fileName: str):
+    cpdef constructor1(self, str fileName):
         cdef list lines
         cdef str line, sentence
         self.sentences = []
@@ -27,6 +27,10 @@ cdef class UniversalDependencyTreeBankCorpus(Corpus):
                 sentence = ""
             else:
                 sentence = sentence + line + "\n"
+
+    def __init__(self, fileName: str = None):
+        if fileName is not None:
+            self.constructor1(fileName)
 
     cpdef ParserEvaluationScore compareParses(self, UniversalDependencyTreeBankCorpus corpus):
         score = ParserEvaluationScore()
