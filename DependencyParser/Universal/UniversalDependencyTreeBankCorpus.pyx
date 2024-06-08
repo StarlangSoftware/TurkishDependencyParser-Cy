@@ -7,6 +7,11 @@ from DependencyParser.Universal.UniversalDependencyTreeBankSentence cimport Univ
 cdef class UniversalDependencyTreeBankCorpus(Corpus):
 
     cpdef constructor1(self, str fileName):
+        """
+        Constructs a universal dependency corpus from an input file. Reads the sentences one by one and constructs a
+        universal dependency sentence from each line read.
+        :param fileName: Input file name.
+        """
         cdef list lines
         cdef str line, sentence
         self.sentences = []
@@ -33,6 +38,12 @@ cdef class UniversalDependencyTreeBankCorpus(Corpus):
             self.constructor1(fileName)
 
     cpdef ParserEvaluationScore compareParses(self, UniversalDependencyTreeBankCorpus corpus):
+        """
+        Compares the corpus with the given corpus and returns a parser evaluation score for this comparison. The result
+        is calculated by summing up the parser evaluation scores of sentence by sentence comparisons.
+        :param corpus: Universal dependency corpus to be compared.
+        :return: A parser evaluation score object.
+        """
         score = ParserEvaluationScore()
         for i in range(len(self.sentences)):
             score.add(self.sentences[i].compareParses(corpus.getSentence(i)))

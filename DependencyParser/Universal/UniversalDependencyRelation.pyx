@@ -115,6 +115,12 @@ cdef class UniversalDependencyRelation(DependencyRelation):
 
     @staticmethod
     def getDependencyPosType(tag: str) -> UniversalDependencyPosType:
+        """
+        The getDependencyPosType method takes a dependency pos type as string and returns the {@link UniversalDependencyPosType}
+        form of it.
+        :param tag: Dependency pos type in string form
+        :return: Dependency pos type for a given dependency pos string
+        """
         cdef int j
         for j in range(len(UniversalDependencyRelation.universal_dependency_pos_types)):
             if tag.upper() == UniversalDependencyRelation.universal_dependency_pos_types[j]:
@@ -122,9 +128,17 @@ cdef class UniversalDependencyRelation(DependencyRelation):
         return None
 
     cpdef constructor1(self, str dependencyType):
+        """
+        Another constructor for UniversalDependencyRelation. Gets input toWord and dependencyType as arguments and
+        calls the super class's constructor and sets the dependency type.
+        :param dependencyType: Type of the dependency relation in string form
+        """
         self.__universal_dependency_type = UniversalDependencyRelation.getDependencyTag(dependencyType)
 
     cpdef constructor2(self):
+        """
+        Overridden Universal Dependency Relation constructor. Gets toWord as input and calls it super class constructor
+        """
         self.to_word = -1
         self.__universal_dependency_type = UniversalDependencyType.DEP
 
@@ -147,6 +161,16 @@ cdef class UniversalDependencyRelation(DependencyRelation):
                 self.constructor1(dependencyType)
 
     cpdef ParserEvaluationScore compareRelations(self, UniversalDependencyRelation relation):
+        """
+        Compares the relation with the given universal dependency relation and returns a parser evaluation score for this
+        comparison. If toWord fields are equal for both relation UAS is 1, otherwise it is 0. If both toWord and
+        dependency types are the same, LAS is 1, otherwise it is 0. If only dependency types of both relations are
+        the same, LS is 1, otherwise it is 0.
+        :param relation: Universal dependency relation to be compared.
+        :return: A parser evaluation score object with (i) LAS = 1, if to and dependency types are same; LAS = 0,
+        otherwise, (ii) UAS = 1, if to is the same; UAS = 0, otherwise, (iii) LS = 1, if dependency types are the same;
+        LS = 0, otherwise.
+        """
         LS = 0.0
         LAS = 0.0
         UAS = 0.0

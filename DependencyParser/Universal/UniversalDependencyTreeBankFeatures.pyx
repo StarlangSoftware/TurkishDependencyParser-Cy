@@ -101,6 +101,13 @@ cdef class UniversalDependencyTreeBankFeatures:
 
     @staticmethod
     def featureIndex(featureName: str) -> int:
+        """
+        Returns the index of the universal feature type in the universalFeatureTypes array, given the name of the feature
+        type.
+        :param featureName: Name of the feature type
+        :return: Index of the universal feature type in the universalFeatureTypes array. If the name does not exist, the
+        function returns -1.
+        """
         if '[' in featureName:
             featureName = featureName[0: featureName.index('[')]
         for i in range(len(UniversalDependencyTreeBankFeatures.universal_feature_types)):
@@ -110,6 +117,11 @@ cdef class UniversalDependencyTreeBankFeatures:
 
     @staticmethod
     def posIndex(uPos: str) -> int:
+        """
+        Returns the index of the given universal dependency pos.
+        :param uPos: Given universal dependency part of speech tag.
+        :return: The index of the universal dependency pos.
+        """
         index = 0
         for universalDependencyPosType in UniversalDependencyPosType:
             if universalDependencyPosType.name == uPos:
@@ -119,6 +131,13 @@ cdef class UniversalDependencyTreeBankFeatures:
 
     @staticmethod
     def dependencyIndex(universalDependency: str) -> int:
+        """
+        Returns the index of the universal dependency type in the universalDependencyTypes array, given the name of the
+        universal dependency type.
+        :param universalDependency: Universal dependency type
+        :return: Index of the universal dependency type in the universalDependencyTypes array. If the name does not exist,
+        the function returns -1.
+        """
         index = 0
         for dependency in UniversalDependencyRelation.universal_dependency_types:
             if dependency == universalDependency:
@@ -128,6 +147,12 @@ cdef class UniversalDependencyTreeBankFeatures:
 
     @staticmethod
     def numberOfValues(language: str, featureName: str) -> int:
+        """
+        Returns the number of distinct values for a feature in a given language
+        :param language: Language name. Currently, 'en' and 'tr' languages are supported.
+        :param featureName: Name of the feature type.
+        :return: The number of distinct values for a feature in a given language
+        """
         feature_index = UniversalDependencyTreeBankFeatures.featureIndex(featureName)
         if feature_index != -1:
             if language == "en":
@@ -138,6 +163,15 @@ cdef class UniversalDependencyTreeBankFeatures:
 
     @staticmethod
     def featureValueIndex(language: str, featureName: str, featureValue: str):
+        """
+        Returns the index of the given value in the feature value array for the given feature in the given
+        language.
+        :param language: Language name. Currently, 'en' and 'tr' languages are supported.
+        :param featureName: Name of the feature.
+        :param featureValue: Value of the feature.
+        :return: The index of the given feature value in the feature value array for the given feature in the given
+        language.
+        """
         feature_index = UniversalDependencyTreeBankFeatures.featureIndex(featureName)
         if feature_index != -1:
             if language == "en":
@@ -154,6 +188,14 @@ cdef class UniversalDependencyTreeBankFeatures:
         return -1
 
     def __init__(self, language: str, features: str):
+        """
+        Constructor of a UniversalDependencyTreeBankFeatures object. Given the language of the word and features of the
+        word as a string, the method splits the features with respect to pipe character. Then for each feature type and
+        value pair, their values and types are inserted into the featureList hash map. The method also check for validity
+        of the feature values for that feature type.
+        :param language: Language name. Currently, 'en' and 'tr' languages are supported.
+        :param features: Feature string.
+        """
         cdef list _list
         cdef str feature, feature_name, feature_value
         self.feature_list = {}
@@ -171,12 +213,26 @@ cdef class UniversalDependencyTreeBankFeatures:
                     print("Feature does not contain = ->" + features)
 
     cpdef str getFeatureValue(self, str feature):
+        """
+        Gets the value of a given feature.
+        :param feature: Name of the feature
+        :return: Value of the feature
+        """
         return self.feature_list[feature]
 
     cpdef bint featureExists(self, str feature):
+        """
+        Checks if the given feature exists in the feature list.
+        :param feature: Name of the feature
+        :return: True, if the feature list contains the feature, false otherwise.
+        """
         return feature in self.feature_list
 
     def __str__(self) -> str:
+        """
+        Overridden toString method. Returns feature with their values separated with pipe characters.
+        :return: A string of feature values and their names separated with pipe character.
+        """
         cdef str result, feature
         if len(self.feature_list) == 0:
             return "_"
