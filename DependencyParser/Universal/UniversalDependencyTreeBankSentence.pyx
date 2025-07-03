@@ -23,6 +23,7 @@ cdef class UniversalDependencyTreeBankSentence(Sentence):
         cdef int to
         super().__init__()
         self.comments = []
+        self.splits = []
         if sentence is not None:
             lines = sentence.split("\n")
             for line in lines:
@@ -55,6 +56,8 @@ cdef class UniversalDependencyTreeBankSentence(Sentence):
                             word = UniversalDependencyTreeBankWord(int(id), surface_form, lemma, u_pos, x_pos, features,
                                                                relation, deps, misc)
                             self.addWord(word)
+                        elif re.fullmatch("\\d+-\\d+", id):
+                            self.splits.append(id)
 
     cpdef addComment(self, str comment):
         """
@@ -76,6 +79,22 @@ cdef class UniversalDependencyTreeBankSentence(Sentence):
         for word in self.words:
             result += word.__str__() + "\n"
         return result
+
+    cpdef int splitSize(self):
+        """
+        Returns number of splits in the sentence
+        :return: Number of splits in the sentence
+        """
+        return len(self.splits)
+
+    cpdef str getSplit(self, int index):
+        """
+        Returns the split at position index
+        :param index: Position
+        :return: Split at position index
+        """
+        return self.splits[index]
+
 
     cpdef ParserEvaluationScore compareParses(self, UniversalDependencyTreeBankSentence sentence):
         """
