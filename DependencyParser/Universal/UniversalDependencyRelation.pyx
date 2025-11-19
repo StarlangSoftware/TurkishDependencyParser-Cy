@@ -1,20 +1,18 @@
 from DependencyParser.Universal.UniversalDependencyPosType import UniversalDependencyPosType
 from DependencyParser.Universal.UniversalDependencyType import UniversalDependencyType
 
-
 cdef class UniversalDependencyRelation(DependencyRelation):
-
     universal_dependency_types = ["ACL", "ADVCL",
-                                "ADVMOD", "AMOD",
-                                "APPOS",
-                                "AUX", "AUXPASS",
-                                "CASE", "CC", "CCOMP",
-                                "CLF", "COMPOUND",
-                                "CONJ", "COP", "CSUBJ",
-                                "DEP", "DET",
-                                "DISCOURSE", "DISLOCATED",
-                                "EXPL",
-                                "FIXED", "FLAT",
+                                  "ADVMOD", "AMOD",
+                                  "APPOS",
+                                  "AUX", "AUXPASS",
+                                  "CASE", "CC", "CCOMP",
+                                  "CLF", "COMPOUND",
+                                  "CONJ", "COP", "CSUBJ",
+                                  "DEP", "DET",
+                                  "DISCOURSE", "DISLOCATED",
+                                  "EXPL",
+                                  "FIXED", "FLAT",
                                   "FOREIGN",
                                   "GOESWITH",
                                   "IOBJ",
@@ -38,15 +36,18 @@ cdef class UniversalDependencyRelation(DependencyRelation):
                                   "NMOD:PART", "NSUBJ:COP",
                                   "OBL:AGENT", "OBL:TMOD",
                                   "OBL:NPMOD", "NSUBJ:OUTER",
-                                  "CSUBJ:OUTER", "ADVCL:RELCL"]
+                                  "CSUBJ:OUTER", "ADVCL:RELCL",
+                                  "OBL:UNMARKED"]
 
     universal_dependency_tags = [UniversalDependencyType.ACL, UniversalDependencyType.ADVCL,
                                  UniversalDependencyType.ADVMOD, UniversalDependencyType.AMOD,
                                  UniversalDependencyType.APPOS,
                                  UniversalDependencyType.AUX, UniversalDependencyType.AUXPASS,
-                                 UniversalDependencyType.CASE, UniversalDependencyType.CC, UniversalDependencyType.CCOMP,
+                                 UniversalDependencyType.CASE, UniversalDependencyType.CC,
+                                 UniversalDependencyType.CCOMP,
                                  UniversalDependencyType.CLF, UniversalDependencyType.COMPOUND,
-                                 UniversalDependencyType.CONJ, UniversalDependencyType.COP, UniversalDependencyType.CSUBJ,
+                                 UniversalDependencyType.CONJ, UniversalDependencyType.COP,
+                                 UniversalDependencyType.CSUBJ,
                                  UniversalDependencyType.DEP, UniversalDependencyType.DET,
                                  UniversalDependencyType.DISCOURSE, UniversalDependencyType.DISLOCATED,
                                  UniversalDependencyType.EXPL,
@@ -58,7 +59,8 @@ cdef class UniversalDependencyRelation(DependencyRelation):
                                  UniversalDependencyType.MARK,
                                  UniversalDependencyType.NMOD, UniversalDependencyType.NSUBJ,
                                  UniversalDependencyType.NUMMOD,
-                                 UniversalDependencyType.OBJ, UniversalDependencyType.OBL, UniversalDependencyType.ORPHAN,
+                                 UniversalDependencyType.OBJ, UniversalDependencyType.OBL,
+                                 UniversalDependencyType.ORPHAN,
                                  UniversalDependencyType.PARATAXIS, UniversalDependencyType.PUNCT,
                                  UniversalDependencyType.REPARANDUM, UniversalDependencyType.ROOT,
                                  UniversalDependencyType.VOCATIVE,
@@ -75,10 +77,10 @@ cdef class UniversalDependencyRelation(DependencyRelation):
                                  UniversalDependencyType.NSUBJ_COP, UniversalDependencyType.OBL_AGENT,
                                  UniversalDependencyType.OBL_TMOD, UniversalDependencyType.OBL_NPMOD,
                                  UniversalDependencyType.NSUBJ_OUTER, UniversalDependencyType.CSUBJ_OUTER,
-                                 UniversalDependencyType.ADVCL_RELCL]
+                                 UniversalDependencyType.ADVCL_RELCL, UniversalDependencyType.OBL_UNMARKED]
 
     universal_dependency_pos_types = ["ADJ", "ADV", "INTJ", "NOUN", "PROPN", "VERB", "ADP", "AUX", "CCONJ",
-                                   "DET", "NUM", "PART", "PRON", "SCONJ", "PUNCT", "SYM", "X"]
+                                      "DET", "NUM", "PART", "PRON", "SCONJ", "PUNCT", "SYM", "X"]
 
     universal_dependency_pos_tags = [UniversalDependencyPosType.ADJ, UniversalDependencyPosType.ADV,
                                      UniversalDependencyPosType.INTJ, UniversalDependencyPosType.NOUN,
